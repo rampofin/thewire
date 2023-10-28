@@ -1,0 +1,130 @@
+bandit16@bandit:~$ nmap -p 31000-32000 localhost
+ 
+Starting Nmap 5.21 ( http://nmap.org ) at 2013-03-20 21:24 CET
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.0033s latency).
+Not shown: 996 closed ports
+PORT      STATE SERVICE
+31046/tcp open  unknown
+31518/tcp open  unknown
+31691/tcp open  unknown
+31790/tcp open  unknown
+31960/tcp open  unknown
+ 
+Nmap done: 1 IP address (1 host up) scanned in 0.19 seconds
+ 
+#We can see we have 5 ports open. Nmap does have a script scan to verify SSL, but it does not seem to work on this server.
+#Thus it's quicker to manually check each port. To speed this up, I will tell you I verified it on port 31790.
+ 
+bandit16@bandit:~$ openssl s_client -connect localhost:31790
+CONNECTED(00000003)
+depth=0 /CN=bandit.labs.overthewire.org
+verify error:num=18:self signed certificate
+verify return:1
+depth=0 /CN=bandit.labs.overthewire.org
+verify return:1
+---
+Certificate chain
+0 s:/CN=bandit.labs.overthewire.org
+i:/CN=bandit.labs.overthewire.org
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIICyjCCAbICCQDE6DxysXt56TANBgkqhkiG9w0BAQUFADAnMSUwIwYDVQQDExxt
+ZWxpc3NhLmxhYnMub3ZlcnRoZXdpcmUub3JnMB4XDTEyMDUxMDIxMzYzOVoXDTIy
+MDUwODIxMzYzOVowJzElMCMGA1UEAxMcbWVsaXNzYS5sYWJzLm92ZXJ0aGV3aXJl
+Lm9yZzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAL85VFz7tV/45RID
+5x804dSKyvmZH62lOjAg0NhW7Kbc9L6mmq3EVd4As/kupXYs0d7hCiMjJri0X2e8
+GTM+nysxZLTR1qa2j/KOzQ7FgQ4vp4R4JQZP6ofhNPvBybh6BwYE5hFzRARK9Y3x
++dr3ZefeAE7Ea1k6NzH7p6HAtpkG36SD6GbhLV9HFhwOCwBWGPnXPfXA/2XBdZzY
+/h6FWrxZPqdALjy8dCeRlNPqG7dD8CIWK4dpBGudxfyXiki5YfwOirotEWjI1E/C
+JK2/jWT7tYLIrVKzOF0dwDWYxNMRnwn5+S2F2/AERSRBlwrtMb6jJf+g2pU27eAe
+3xvtJs8CAwEAATANBgkqhkiG9w0BAQUFAAOCAQEAtDKEX9gWmEyKqkhPN1L+wjEi
+M2HH/XMgDxHrqWgy0Xl9gznuvM0pkOEXUOKWkfKDQfskk8cbgqn0hEvaX7AKrNL4
+Nbm1JD+hUSSFtW3sxmv+aHkdEz6H70oUp712wP2Hu3DF7paVSPC5yB1vqoNYmHX/
+J9CwqptVj+dLaDeY+ayzEwOuaEcd+cpP4OTbMLy0SuKLONr1+NaA5IPaVE/XOmlE
+wW7zNRcJ3kxnvsHrqF4ZeYPBLNmhDT3ZD4qso+JiL9lme5YbP7+dCQo5Oa1AT7Dz
+UmKZhWQTLsnI6Eyl8NwLnxiSkIOUigN6WF8bnd1F9FVKfmjQDSjBJHGqTE4Trg==
+-----END CERTIFICATE-----
+subject=/CN=bandit.labs.overthewire.org
+issuer=/CN=bandit.labs.overthewire.org
+---
+No client certificate CA names sent
+---
+SSL handshake has read 1436 bytes and written 229 bytes
+---
+New, TLSv1/SSLv3, Cipher is DHE-RSA-AES256-SHA
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: zlib compression
+Expansion: zlib compression
+SSL-Session:
+Protocol  : TLSv1
+Cipher    : DHE-RSA-AES256-SHA
+Session-ID: 913086AEE63018EFB254F2105A4597FC5CB419BFFBCE5B1FAF10EC7967668530
+Session-ID-ctx:
+Master-Key: 155AF180C1B8BB81BDE85105A05F1C6D5E7B8511B6C9E83B257EC2012B102170522C965E114B233D108A838C7520DED6
+Key-Arg   : None
+TLS session ticket:
+0000 - 95 66 61 4b c2 a6 3c 36-50 d2 8d fd 58 fb 03 30   .faK..<6P...X..0
+0010 - 2c 38 20 12 84 02 08 68-d0 f3 5d 47 1a 8a 86 b2   ,8 ....h..]G....
+0020 - 01 19 4f cb 46 85 e8 a2-36 e2 ac fd 9f 2e 66 1e   ..O.F...6.....f.
+0030 - ab 99 67 49 93 f0 82 0e-56 60 0f 4b c2 28 b6 7b   ..gI....V`.K.(.{
+0040 - 7f 55 f9 cf 9d d9 07 0a-4f 40 a6 7d cc 89 4b b4   .U......O@.}..K.
+0050 - f3 2a 0e b8 35 ac e9 e3-04 b7 3b e8 b5 32 8b 7a   .*..5.....;..2.z
+0060 - a8 05 c9 e9 89 74 c4 fc-40 8d 3b 49 2e de 63 be   .....t..@.;I..c.
+0070 - 25 b5 f5 05 85 17 82 92-8b 95 5c 8b e6 e9 f3 e7   %.........\.....
+0080 - 21 49 9b a6 b8 82 fc d8-6e 67 54 31 ad a3 75 ee   !I......ngT1..u.
+0090 - 43 07 47 54 bb fa d9 9a-2a ef 20 85 28 2d 2b 63   C.GT....*. .(-+c
+ 
+Compression: 1 (zlib compression)
+Start Time: 1363811727
+Timeout   : 300 (sec)
+Verify return code: 18 (self signed certificate)
+---
+cluFn7wTiGryunymYOu4RcffSxQluehd
+Correct!
+-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEAvmOkuifmMg6HL2YPIOjon6iWfbp7c3jx34YkYWqUH57SUdyJ
+imZzeyGC0gtZPGujUSxiJSWI/oTqexh+cAMTSMlOJf7+BrJObArnxd9Y7YT2bRPQ
+Ja6Lzb558YW3FZl87ORiO+rW4LCDCNd2lUvLE/GL2GWyuKN0K5iCd5TbtJzEkQTu
+DSt2mcNn4rhAL+JFr56o4T6z8WWAW18BR6yGrMq7Q/kALHYW3OekePQAzL0VUYbW
+JGTi65CxbCnzc/w4+mqQyvmzpWtMAzJTzAzQxNbkR2MBGySxDLrjg0LWN6sK7wNX
+x0YVztz/zbIkPjfkU1jHS+9EbVNj+D1XFOJuaQIDAQABAoIBABagpxpM1aoLWfvD
+KHcj10nqcoBc4oE11aFYQwik7xfW+24pRNuDE6SFthOar69jp5RlLwD1NhPx3iBl
+J9nOM8OJ0VToum43UOS8YxF8WwhXriYGnc1sskbwpXOUDc9uX4+UESzH22P29ovd
+d8WErY0gPxun8pbJLmxkAtWNhpMvfe0050vk9TL5wqbu9AlbssgTcCXkMQnPw9nC
+YNN6DDP2lbcBrvgT9YCNL6C+ZKufD52yOQ9qOkwFTEQpjtF4uNtJom+asvlpmS8A
+vLY9r60wYSvmZhNqBUrj7lyCtXMIu1kkd4w7F77k+DjHoAXyxcUp1DGL51sOmama
++TOWWgECgYEA8JtPxP0GRJ+IQkX262jM3dEIkza8ky5moIwUqYdsx0NxHgRRhORT
+8c8hAuRBb2G82so8vUHk/fur85OEfc9TncnCY2crpoqsghifKLxrLgtT+qDpfZnx
+SatLdt8GfQ85yA7hnWWJ2MxF3NaeSDm75Lsm+tBbAiyc9P2jGRNtMSkCgYEAypHd
+HCctNi/FwjulhttFx/rHYKhLidZDFYeiE/v45bN4yFm8x7R/b0iE7KaszX+Exdvt
+SghaTdcG0Knyw1bpJVyusavPzpaJMjdJ6tcFhVAbAjm7enCIvGCSx+X3l5SiWg0A
+R57hJglezIiVjv3aGwHwvlZvtszK6zV6oXFAu0ECgYAbjo46T4hyP5tJi93V5HDi
+Ttiek7xRVxUl+iU7rWkGAXFpMLFteQEsRr7PJ/lemmEY5eTDAFMLy9FL2m9oQWCg
+R8VdwSk8r9FGLS+9aKcV5PI/WEKlwgXinB3OhYimtiG2Cg5JCqIZFHxD6MjEGOiu
+L8ktHMPvodBwNsSBULpG0QKBgBAplTfC1HOnWiMGOU3KPwYWt0O6CdTkmJOmL8Ni
+blh9elyZ9FsGxsgtRBXRsqXuz7wtsQAgLHxbdLq/ZJQ7YfzOKU4ZxEnabvXnvWkU
+YOdjHdSOoKvDQNWu6ucyLRAWFuISeXw9a/9p7ftpxm0TSgyvmfLF2MIAEwyzRqaM
+77pBAoGAMmjmIJdjp+Ez8duyn3ieo36yrttF5NSsJLAbxFpdlc1gvtGCWW+9Cq0b
+dxviW8+TFVEBl1O4f7HVm6EpTscdDxU+bCXWkfjuRb7Dy9GOtt9JPsX8MBTakzh3
+vBgsyi/sN3RqRBcGU40fOoZyfAMT8s1m/uYv52O6IgeuZ/ujbjY=
+-----END RSA PRIVATE KEY-----
+ 
+read:errno=0
+ 
+#Now we have an ssh key we can use. We need to copy it into a file to it.
+ 
+bandit16@bandit:~$ mkdir /tmp/ssss
+bandit16@bandit:~$ cd /tmp/ssss
+bandit16@bandit:/tmp/ssss$ touch sshkey.private
+bandit16@bandit:/tmp/ssss$ vi sshkey.private
+bandit16@bandit:/tmp/ssss$ chmod 600 sshkey.private
+bandit16@bandit:/tmp/ssss$ ssh -i sshkey.private bandit17@localhost
+Could not create directory '/home/bandit16/.ssh'.
+The authenticity of host 'localhost (127.0.0.1)' can't be established.
+RSA key fingerprint is 9d:09:d9:46:84:df:f9:dd:cc:7c:dc:49:a0:95:b2:10.
+Are you sure you want to continue connecting (yes/no)? yes
+Failed to add the host to the list of known hosts (/home/bandit16/.ssh/known_hosts).
+bandit17@bandit:~$ 
