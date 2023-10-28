@@ -1,0 +1,262 @@
+level 0
+Info from instructions.
+Host: bandit.labs.overthewire.org
+Port: 2220
+Username: bandit0
+Password: bandit0
+We used the above information to login using ssh–
+aashirvad@aashirvads-MacBook-Pro ~ % ssh bandit0@bandit.labs.overthewire.org -p 2220
+bandit0@bandit.labs.overthewire.org's password:
+bandit0@bandit:~$
+
+
+level 0----1
+Now, from the bandit0 shell, we need to find the password for logging as the next user. To find that password, we are going to list files in the directory. Our target is to find a file named readme. After finding that file, we need to read the password stored inside that file.
+We use the ls command to list the files in the current directory. We found the readme file. Now to read the password we will use the cat command. After that, we are going to use the password to login into next level using SSH.
+ls --list the names and features of the file
+cat readme-to read data from file readme and give output
+----------------------------------------------------------
+ssh bandit1@localhost
+bandit0@bandit:~$ ls
+readme
+bandit0@bandit:~$ cat readme
+NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL
+bandit0@bandit:~$ exit
+logout
+Connection to bandit.labs.overthewire.org closed.
+aashirvad@aashirvads-MacBook-Pro ~ % ssh bandit1@bandit.labs.overthewire.org -p 2220
+bandit1@bandit:~$
+
+level 1------2
+We are informed that the password for the next level is stored inside a file named -(hyphen). So, to find it we use the ls command. Now comes the part where we have to read the file. As the file is named -(hyphen) we won’t be able to read it simply by cat command. As cat command considers -(hyphen) as stdin/Stout. If we directly use cat command, it won’t be able to understand that hyphen is a file name. So, we will prefix the command with the path ./, This will help us to read the password stored as shown in the given figure. Since we found the password for the user bandit2. We will use it to get an SSH connection as bandit2.
+ls
+cat ./-
+ssh bandit2@localhost
+----------------------------------------------------------
+ls -alps =used to list the files
+bandit1@bandit:~$ ls -alps
+total 24
+4 -rw-r----- 1 bandit2 bandit1 33 Oct 5 06:19 -
+4 drwxr-xr-x 2 root root 4096 Oct 5 06:19 ./
+4 drwxr-xr-x 70 root root 4096 Oct 5 06:20 ../
+4 -rw-r--r-- 1 root root 220 Jan 6 2022 .bash_logout
+4 -rw-r--r-- 1 root root 3771 Jan 6 2022 .bashrc
+4 -rw-r--r-- 1 root root 807 Jan 6 2022 .profile
+bandit1@bandit:~$ cat ./-
+rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi
+bandit1@bandit:~$ exit
+logout
+Connection to bandit.labs.overthewire.org closed.
+aashirvad@aashirvads-MacBook-Pro ~ % ssh bandit2@bandit.labs.overthewire.org -p 2220
+bandit2@bandit:~$
+
+level 2-----3
+We are informed that the password for the next level is stored inside a file named spaces in this filename. So, to find it we use the ls command. Now comes the part where we have to read the file. As the file is named spaces in this filename, we won’t be able to read it simply by cat command. As cat command reads files name only until space as it considers space as null ‘/0’. If we directly use cat command, it won’t be able to find the file. So, we will write the name of the file in quotes, this will help us to read the password stored as shown in the given figure. Since we found the password for the user bandit3. We will use it to get an SSH connection as bandit3.
+ls
+cat 'spaces in this filename'
+ssh bandit3@localhost
+----------------------------------------------------------
+bandit2@bandit:~$ ls -alps
+total 24
+4 drwxr-xr-x 2 root root 4096 Oct 5 06:19 ./
+4 drwxr-xr-x 70 root root 4096 Oct 5 06:20 ../
+4 -rw-r--r-- 1 root root 220 Jan 6 2022 .bash_logout
+4 -rw-r--r-- 1 root root 3771 Jan 6 2022 .bashrc
+4 -rw-r--r-- 1 root root 807 Jan 6 2022 .profile
+4 -rw-r----- 1 bandit3 bandit2 33 Oct 5 06:19 spaces in this filename
+bandit2@bandit:~$ cat spaces\ in\ this\ filename 
+aBZ0W5EmUfAf7kHTQeOwd8bauFJ2lAiG
+bandit2@bandit:~$ exit
+logout
+Connection to bandit.labs.overthewire.org closed.
+aashirvad@aashirvads-MacBook-Pro ~ % ssh bandit3@bandit.labs.overthewire.org -p 2220
+bandit3@bandit:~$
+
+level 3----4
+We are informed that the password for the next level is stored inside a directory named inhere. So, to find it we use the ls command. Now, after traversing inside inhere directory we run ls command again.  Now it might be the case that the file is hidden. So, we run ls command with -al parameter. It lists all files including the hidden one. And we found the .hidden file. In Linux, the file with a dot(.) in front of the name of the file makes it hidden. Now we would simply use the cat command to read the password stored in the file. Since we found the password for the user bandit4. We will use it to get an SSH connection as bandit4.
+ls
+cd inhere/
+ls
+ls -al
+cat .hidden
+ssh bandit4@localhost
+----------------------------------------------------------
+bandit3@bandit:~$ ls -alps
+total 24
+4 drwxr-xr-x 3 root root 4096 Oct 5 06:19 ./
+4 drwxr-xr-x 70 root root 4096 Oct 5 06:20 ../
+4 -rw-r--r-- 1 root root 220 Jan 6 2022 .bash_logout
+4 -rw-r--r-- 1 root root 3771 Jan 6 2022 .bashrc
+4 drwxr-xr-x 2 root root 4096 Oct 5 06:19 inhere/
+4 -rw-r--r-- 1 root root 807 Jan 6 2022 .profile
+bandit3@bandit:~$ cd inhere/
+bandit3@bandit:~/inhere$ ls -al
+total 12
+drwxr-xr-x 2 root root 4096 Oct 5 06:19 .
+drwxr-xr-x 3 root root 4096 Oct 5 06:19 ..
+-rw-r----- 1 bandit4 bandit3 33 Oct 5 06:19 .hidden
+bandit3@bandit:~/inhere$ cat .hidden
+2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe
+bandit3@bandit:~/inhere$ exit
+logout
+Connection to bandit.labs.overthewire.org closed.
+aashirvad@aashirvads-MacBook-Pro ~ % ssh bandit4@bandit.labs.overthewire.org -p 2220
+bandit4@bandit:~$
+
+level 4-----5
+We are informed that the password for the next level is stored inside a human-readable file. So, to find it we use the ls command. Now, after traversing inside inhere directory we run ls command again. This gives us a bunch of files as shown in the image. We will use the file command to get the information about the files. From files command, we now know that the file07 contains ASCII text. It is mostly readable text. So, let’s read it using cat command. This gives us the password for the next level. We will use it to get an SSH connection as bandit5.
+ls -la
+cd inhere/
+ls
+file ./*
+cat ./-file07
+ssh bandit5@localhost
+----------------------------------------------------------
+bandit4@bandit:~$ ls -alps
+total 24
+4 drwxr-xr-x 3 root root 4096 Oct 5 06:19 ./
+4 drwxr-xr-x 70 root root 4096 Oct 5 06:20 ../
+4 -rw-r--r-- 1 root root 220 Jan 6 2022 .bash_logout
+4 -rw-r--r-- 1 root root 3771 Jan 6 2022 .bashrc
+4 drwxr-xr-x 2 root root 4096 Oct 5 06:19 inhere/
+4 -rw-r--r-- 1 root root 807 Jan 6 2022 .profile
+bandit4@bandit:~$ cd inhere/
+bandit4@bandit:~/inhere$ ls
+-file00 -file01 -file02 -file03 -file04 -file05 -file06 -file07 -file08 -file09
+bandit4@bandit:~/inhere$ find . -type f | xargs file 
+./-file01: data
+./-file02: data
+./-file08: data
+./-file06: data
+./-file00: data
+./-file04: data
+./-file05: data
+./-file07: ASCII text
+./-file03: data
+./-file09: data
+bandit4@bandit:~/inhere$ man xargs
+bandit4@bandit:~/inhere$ cat ./-file07
+lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR
+bandit4@bandit:~/inhere$ exit
+logout
+Connection to bandit.labs.overthewire.org closed.
+aashirvad@aashirvads-MacBook-Pro ~ % ssh bandit5@bandit.labs.overthewire.org -p 2220
+bandit5@bandit:~$
+
+level 5----6
+We are informed that the password for the next level is stored inside a directory named inhere. So, to find it we use the ls command. Now, after traversing inside inhere directory we run ls command again. This gives us a bunch of files as shown in the image. We will use the file size to find the file. Find command has the parameter of size in which we have to use ‘c’ for depicting size in bytes. From find command, we now know that the file2 contains the password. So, let’s read it using cat command. This gives us the password for the next level. We will use it to get an SSH connection as bandit6.
+ls
+cd inhere/
+ls
+find . -size 1033c
+cat ./maybehere07/.file2
+ssh bandit6@localhost
+----------------------------------------------------------
+bandit5@bandit:~$ ls
+inhere
+bandit5@bandit:~$ cd inhere/
+bandit5@bandit:~/inhere$ find . -type f -size 1033c ! -executable
+./maybehere07/.file2
+bandit5@bandit:~/inhere$ cat ./maybehere07/.file2
+P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU bandit5@bandit:~/inhere$ exit
+logout
+Connection to bandit.labs.overthewire.org closed.
+aashirvad@aashirvads-MacBook-Pro ~ % ssh bandit6@bandit.labs.overthewire.org -p 2220
+bandit6@bandit:~$
+
+
+level 6------7
+We are informed that the password for the next level is stored somewhere on the server. So, finding the file over the server would be a lot trickier if we are using ls. So, we will try to widen our scope of search using the find command. We are hinted that the user of the file is bandit7 and it is a part of group bandit 6. We will add this information as parameters in the find command. We are given the size too. Let’s add that too. Now as we can see in the given image, we successfully located the password file hidden over the server.
+find / -user bandit7 -group bandit6 -size 33c
+bandit6@bandit:~$ find / -type f -user bandit7 -group bandit6 -size 33c
+cat /var/lib/dpkg/info/bandit7.password
+ssh bandit7@localhost
+From find command, we now know that the bandit7.password contains the credentials. So, let’s read it using cat command. This gives us the password for the next level. We will use it to get an SSH connection as bandit7.
+----------------------------------------------------------
+bandit6@bandit:~$ cat /var/lib/dpkg/info/bandit7.password
+z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S
+bandit6@bandit:~$ ssh bandit7@bandit.labs.overthewire.org -p 2220
+kex_exchange_identification: Connection closed by remote host
+Connection closed by 127.0.0.1 port 2220
+bandit6@bandit:~$ exit
+logout
+Connection to bandit.labs.overthewire.org closed.
+aashirvad@aashirvads-MacBook-Pro ~ % ssh bandit7@bandit.labs.overthewire.org -p 2220
+bandit7@bandit:~$
+
+level 7----8
+We are informed that the password for the next level is stored inside a file named data.txt. So, to find it we use the ls command. Now we are hinted that the password is written next to the word millionth in the data.txt file. This means if we find the millionth word, we find the password. We are going to use the grep command for finding millionth. Here we using the (|) Unix pipe. The Pipe connects the standard output from the first command and feeds it as standard input to the second command. In our case, first cat command reads the file and then the data inside the file is sent to grep command to work on. This gives us the password for the next level. We will use it to get an SSH connection as bandit8.
+ls
+cat data.txt | grep millionth
+ssh bandit8@localhost
+----------------------------------------------------------
+bandit7@bandit:~$ ls -alps
+total 4108
+4 drwxr-xr-x 2 root root 4096 Oct 5 06:19 ./
+4 drwxr-xr-x 70 root root 4096 Oct 5 06:20 ../
+4 -rw-r--r-- 1 root root 220 Jan 6 2022 .bash_logout
+4 -rw-r--r-- 1 root root 3771 Jan 6 2022 .bashrc
+4088 -rw-r----- 1 bandit8 bandit7 4184396 Oct 5 06:19 data.txt
+4 -rw-r--r-- 1 root root 807 Jan 6 2022 .profile
+bandit7@bandit:~$ ls
+data.txt
+bandit7@bandit:~$ cat data.txt
+bandit7@bandit:~$ cat data.txt | grep millionth
+millionth	TESKZC0XvTetK0S9xNwm25STk5iWrBvP
+bandit7@bandit:~$ exit
+logout
+Connection to bandit.labs.overthewire.org closed.
+aashirvad@aashirvads-MacBook-Pro ~ % ssh bandit8@bandit.labs.overthewire.org -p 2220
+bandit8@bandit:~$
+
+Level8-----9
+We are informed that the password for the next level is stored inside a file named data.txt. It is hinted that the password is the only line of text that occurs only once. Here we are going to use sort command to sort the text inside the data.txt file. But still, the file contains a lot of repeating statements so we will use the uniq command to print the not repeating statement. We are using multiple pipes here to get a filtered result. This gives us the password for the next level. We will use it to get an SSH connection as bandit9.
+cat data.txt | sort | uniq -u
+ssh bandit9@localhost
+----------------------------------------------------------
+bandit8@bandit:~$ cat data.txt
+bandit8@bandit:~$ man uniq
+bandit8@bandit:~$ sort data.txt | uniq -c
+1 EN632PlfYiZbn3PhVK3XOGSlNInNE00t
+bandit8@bandit:~$ exit
+logout
+Connection to bandit.labs.overthewire.org closed.
+aashirvad@aashirvads-MacBook-Pro ~ % ssh bandit9@bandit.labs.overthewire.org -p 2220
+bandit9@bandit:~$
+
+level 9----10
+We are informed that the password for the next level is stored inside a file named data.txt. We are hinted that the password is followed by several ‘=’ characters. Now if we are to use the cat command our screen would be filled with unreadable mesh. So, to get a more refined approach we are going to use strings command which prints character sequences that are at least 4 characters long. And to get to the exact location of the password, we are going to use grep. This gives us the password for the next level. We will use it to get an SSH connection as bandit10.
+ls
+strings data.txt | grep =
+ssh bandit10@localhost
+----------------------------------------------------------
+bandit9@bandit:~$ ls
+data.txt
+bandit9@bandit:~$ strings data.txt | grep ====
+x]T========== theG)"
+========== passwordk^
+========== is
+========== G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s
+bandit9@bandit:~$ exit
+logout
+Connection to bandit.labs.overthewire.org closed.
+aashirvad@aashirvads-MacBook-Pro ~ % ssh bandit10@bandit.labs.overthewire.org -p 2220
+bandit10@bandit:~$
+
+Level10----11
+We are informed that the password for the next level is stored inside a file named data.txt. So, to find it we use the ls command. Now, we are hinted that the password is encrypted in Base64. Now we can either read the file with cat command and decode the Base64 manually but we have a command in Linux that can do the heavy lifting for us. So, we use piping to use cat command and base64 command with d parameter to read and decode the text simultaneously.  This gives us the password for the next level. We will use it to get an SSH connection as bandit11.
+ls
+cat data.txt | base64 --decode
+ssh bandit11@localhost
+----------------------------------------------------------
+bandit10@bandit:~$ ls
+data.txt
+bandit10@bandit:~$ cat data.txt | base64 --decode
+The password is 6zPeziLdR2RKNdNYFNb6nVCKzphlXHBM
+bandit10@bandit:~$ exit
+logout
+Connection to bandit.labs.overthewire.org closed.
+aashirvad@aashirvads-MacBook-Pro ~ % ssh bandit11@bandit.labs.overthewire.org -p 2220
+bandit11@bandit:~$
+
+
