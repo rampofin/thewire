@@ -1,0 +1,17 @@
+bandit11@bandit:~$ cat data.txt
+Gur cnffjbeq vf WIAOOSFzMjXXBC0KoSKBbJ8puQm5lIEi
+bandit11@bandit:~$ exit
+logout
+Connection to bandit.labs.overthewire.org closed.
+aashirvad@aashirvads-MacBook-Pro ~ % ssh bandit12@bandit.labs.overthewire.org -p 2220
+
+                         _                     _ _ _   
+                        | |__   __ _ _ __   __| (_) |_ 
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_ 
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+                                                       
+
+                      This is an OverTheWire game server. 
+            More information on http://www.overthewire.org/wargames
+bandit12@bandit:~$ 
