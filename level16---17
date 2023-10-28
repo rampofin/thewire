@@ -1,3 +1,13 @@
+The password for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. 
+First find out which of these ports have a server listening on them.
+Then find out which of those speak SSL and which don’t. 
+There is only 1 server that will give the next password, the others will simply send back to you whatever you send to it.
+
+Moving up with our network skills we are introduced to nmap.
+Let’s run some scans to find the listening server.
+ netcat can also do basic port scans.
+if the system had nmap for default we don't need to do the above.
+--------------------------------------------------------------------------------------------------------------------------------------------------
 bandit16@bandit:~$ nmap -p 31000-32000 localhost
  
 Starting Nmap 5.21 ( http://nmap.org ) at 2013-03-20 21:24 CET
