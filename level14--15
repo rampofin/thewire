@@ -14,3 +14,15 @@ bandit13@bandit:~$ exit
 logout
 Connection to bandit.labs.overthewire.org closed.
 aashirvad@aashirvads-MacBook-Pro ~ % ssh bandit15@bandit.labs.overthewire.org -p 2220
+                        _                     _ _ _   
+                        | |__   __ _ _ __   __| (_) |_ 
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_ 
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+                                                       
+
+                      This is an OverTheWire game server. 
+            More information on http://www.overthewire.org/wargames
+
+bandit15@bandit.labs.overthewire.org's password: 
+bandit15@bandit:~$ 
