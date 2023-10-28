@@ -1,0 +1,95 @@
+bandit12@bandit:~$ cat data.txt
+bandit12@bandit:~$ man xxd
+bandit12@bandit:~$  mkdir /tmp/aash
+bandit12@bandit:~$ cp data.txt /tmp/aash
+bandit12@bandit:~$ cd /tmp/aash
+bandit12@bandit:/tmp/aash$ ls
+data.txt
+bandit12@bandit:/tmp/aash$ xxd -r data.txt > data
+bandit12@bandit:/tmp/aash$ ls
+data  data.txt
+bandit12@bandit:/tmp/aash$ file data
+data: gzip compressed data, was "data2.bin", last modified: Thu Oct  5 06:19:20 2023, max compression, from Unix, original size modulo 2^32 573
+bandit12@bandit:/tmp/aash$ man gzip
+bandit12@bandit:/tmp/aash$ mv data file.gz
+bandit12@bandit:/tmp/aash$ gzip -d file.gz
+bandit12@bandit:/tmp/aash$ ls
+data.txt  file
+bandit12@bandit:/tmp/aash$ file file
+file: bzip2 compressed data, block size = 900k
+bandit12@bandit:/tmp/aash$ mv file file.bz2
+bandit12@bandit:/tmp/aash$ man bzip2
+bandit12@bandit:/tmp/aash$ bzip2 -d file.bz2
+bandit12@bandit:/tmp/aash$ ls
+data.txt  file
+bandit12@bandit:/tmp/aash$ file file
+file: gzip compressed data, was "data4.bin", last modified: Thu Oct  5 06:19:20 2023, max compression, from Unix, original size modulo 2^32 20480
+bandit12@bandit:/tmp/aash$ mv file file.gz
+bandit12@bandit:/tmp/aash$ gzip -d file.gz
+bandit12@bandit:/tmp/aash$ ls
+data.txt  file
+bandit12@bandit:/tmp/aash$ file file
+file: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/aash$ mv file file.tar
+bandit12@bandit:/tmp/aash$ tar xf file.tar
+bandit12@bandit:/tmp/aash$ ls
+data5.bin  data.txt  file.tar
+bandit12@bandit:/tmp/aash$ file data5.bin
+data5.bin: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/aash$ rm file.tar
+bandit12@bandit:/tmp/aash$ rm data.txt
+bandit12@bandit:/tmp/aash$ ls
+data5.bin
+bandit12@bandit:/tmp/aash$ file file
+file: cannot open `file' (No such file or directory)
+bandit12@bandit:/tmp/aash$ file data5.bin
+data5.bin: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/aash$ mv data5.bin data.tar
+bandit12@bandit:/tmp/aash$ tar xf data.tar
+bandit12@bandit:/tmp/aash$ ls
+data6.bin  data.tar
+bandit12@bandit:/tmp/aash$ file data6.bin
+data6.bin: bzip2 compressed data, block size = 900k
+bandit12@bandit:/tmp/aash$ mv data6.bin data.bz2
+bandit12@bandit:/tmp/aash$ bzip2 -d data.bz2
+bandit12@bandit:/tmp/aash$ ls
+data  data.tar
+bandit12@bandit:/tmp/aash$ file file
+file: cannot open `file' (No such file or directory)
+bandit12@bandit:/tmp/aash$ file data
+data: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/aash$ mv data data.tar
+bandit12@bandit:/tmp/aash$ ls
+data.tar
+bandit12@bandit:/tmp/aash$ tar xf data.tar
+bandit12@bandit:/tmp/aash$ ls
+data8.bin  data.tar
+bandit12@bandit:/tmp/aash$ file data8.bin
+data8.bin: gzip compressed data, was "data9.bin", last modified: Thu Oct  5 06:19:20 2023, max compression, from Unix, original size modulo 2^32 49
+bandit12@bandit:/tmp/aash$ mv data8.bin data.gz
+bandit12@bandit:/tmp/aash$ gzip -d data.gz
+bandit12@bandit:/tmp/aash$ ls
+data  data.tar
+bandit12@bandit:/tmp/aash$ file data
+data: ASCII text
+bandit12@bandit:/tmp/aash$ cat data
+The password is wbWdlBxEir4CaE8LaPhauuOo6pwRmrDw
+bandit12@bandit:/tmp/aash$ wbWdlBxEir4CaE8LaPhauuOo6pwRmrDw
+wbWdlBxEir4CaE8LaPhauuOo6pwRmrDw: command not found
+bandit12@bandit:/tmp/aash$ exit
+logout
+Connection to bandit.labs.overthewire.org closed.
+aashirvad@aashirvads-MacBook-Pro ~ % ssh bandit13@bandit.labs.overthewire.org -p 2220
+                         _                     _ _ _   
+                        | |__   __ _ _ __   __| (_) |_ 
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_ 
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+                                                       
+
+                      This is an OverTheWire game server. 
+            More information on http://www.overthewire.org/wargames
+
+bandit13@bandit.labs.overthewire.org's password: 
+bandit13@bandit:~$ 
+
