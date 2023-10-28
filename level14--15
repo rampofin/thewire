@@ -1,0 +1,16 @@
+bandit14@bandit:~$ telnet localhost 30000
+Trying 127.0.0.1...
+Connected to localhost.
+Escape character is '^]'.
+4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
+Correct!
+BfMYroe26WYalil77FoDi9qh59eK5xNr
+
+
+bandit14@bandit:~$ exit
+Logout
+Connection to bandit.labs.overthewire.org closed.
+bandit13@bandit:~$ exit
+logout
+Connection to bandit.labs.overthewire.org closed.
+aashirvad@aashirvads-MacBook-Pro ~ % ssh bandit15@bandit.labs.overthewire.org -p 2220
