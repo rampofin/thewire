@@ -1,3 +1,9 @@
+There is a setuid binary in the home directory that does the following: it makes a connection to localhost on the port you specify as a command line argument. 
+It then reads a line of text from the connection and compares it to the password in the previous level (bandit20). 
+If the password is correct, it will transmit the password for the next level (bandit21).
+This one is a little more complicated. Upon entering bandit20’s shell, we see a binary that connects to a local port, and waits for a connection and the password to be sent to it from outside.
+We need two shells to accomplish this.
+--------------------------------------------------------------------------------------------------------------------------------------------------
 bandit20@bandit:~$ ls
 suconnect
 bandit20@bandit:~$ ./suconnect
