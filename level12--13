@@ -74,8 +74,6 @@ bandit12@bandit:/tmp/aash$ file data
 data: ASCII text
 bandit12@bandit:/tmp/aash$ cat data
 The password is wbWdlBxEir4CaE8LaPhauuOo6pwRmrDw
-bandit12@bandit:/tmp/aash$ wbWdlBxEir4CaE8LaPhauuOo6pwRmrDw
-wbWdlBxEir4CaE8LaPhauuOo6pwRmrDw: command not found
 bandit12@bandit:/tmp/aash$ exit
 logout
 Connection to bandit.labs.overthewire.org closed.
