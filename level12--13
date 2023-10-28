@@ -1,3 +1,7 @@
+The password for the  level is stored in the file data.txt, which is a hexdump of a file that has been repeatedly compressed.
+For this level it is necessary to create a directory under /tmp in which you can work using mkdir. 
+We need to decompress and check the file over and over again until we get the right format.
+--------------------------------------------------------------------------------------------------------------------------------------------------
 bandit12@bandit:~$ cat data.txt
 bandit12@bandit:~$ man xxd
 bandit12@bandit:~$  mkdir /tmp/aash
