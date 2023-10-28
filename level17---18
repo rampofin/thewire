@@ -1,0 +1,23 @@
+bandit17@bandit:~$ ls
+passwords.new  passwords.old
+bandit17@bandit:~$ diff passwords.new  passwords.old
+42c42
+< kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
+---
+> bECYSoXjOeGseirUCztuCBDF3xXqE7By
+bandit17@bandit:/tmp/aash$ exit
+logout
+Connection to bandit.labs.overthewire.org closed.
+aashirvad@aashirvads-MacBook-Pro ~ % ssh bandit18@bandit.labs.overthewire.org -p 2220
+                         _                     _ _ _   
+                        | |__   __ _ _ __   __| (_) |_ 
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_ 
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+                                                       
+
+                      This is an OverTheWire game server. 
+            More information on http://www.overthewire.org/wargames
+
+bandit18@bandit.labs.overthewire.org's password: 
+bandit18@bandit:~$ 
