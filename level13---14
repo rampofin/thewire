@@ -1,0 +1,11 @@
+bandit13@bandit:~$
+Ls
+sshkey. private
+bandit13@bandit:~$ ssh bandit14@localhost -i sshkey.private
+Could not create directory '/home/bandit13/.ssh'
+The authenticity of host 'localhost (127.0.0.1)' can't be established.
+ECDSA key fingerprint is SHA256:98ULOZWr85496EtCRkKlo20X30PnyPSB5tB5RPbhczc.
+Are you sure you want to continue connecting (yes/no)? yes
+Failed to add the host to the list of known hosts (/home/bandit13/ssh/known_hosts).
+4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
+bandit14@bandit:~$
