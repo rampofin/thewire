@@ -1,3 +1,7 @@
+The password is encoded using simple rot13 encryption. 
+There are many options to solve this including using various scripting languages and simply using an online rot13 decoder.
+Let’s try a solution in our shell.
+----------------------------------------------------------------------------------------------------------------------------------------------------
 bandit11@bandit:~$ cat data.txt
 Gur cnffjbeq vf WIAOOSFzMjXXBC0KoSKBbJ8puQm5lIEi
 bandit11@bandit:~$ exit
